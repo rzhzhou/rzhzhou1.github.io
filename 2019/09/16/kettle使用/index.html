@@ -7,7 +7,7 @@
 
 
 
-<title>kettlecourse | 青青草原扛把子</title>
+<title>kettle工具使用 | 青青草原扛把子</title>
 
 
 
@@ -172,41 +172,30 @@
         </header>
 
         <div class="post-content">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="为什么要用kettle工具？"><a href="#为什么要用kettle工具？" class="headerlink" title="为什么要用kettle工具？"></a>为什么要用kettle工具？</h3><p><strong>由于公司内需要处理大量的数据文件，例如：Excel,Json,达梦数据区等，假如通过写脚本来转换数据的话，如果有许多不同的类型的数据库或Excel，你就需要不停的写脚本来转换，恰好Kettle工具可以很快捷的帮你转换格式，存入到你想要的到数据库当中.</strong></p>
-<h3 id="下载和安装！"><a href="#下载和安装！" class="headerlink" title="下载和安装！"></a>下载和安装！</h3><p>1、下载Kettle安装包<br>打开<a href="https://community.hitachivantara.com/s/article/data-integration-kettle" target="_blank" rel="noopener">kettle官网</a>,我们这里下载最稳定的8.2版本,大概有1.1个G左右，下载完整后，找到自己下载的目录下解压即可.</p>
-<p><img src="/image/kettle%E4%B8%8B%E8%BD%BD.png" alt="Alt text" title="Optional title"></p>
-<p>2、下载安装JDK</p>
-<p>由于Kettle 是采用java 编写，因此需要在本地有JVM 的运行环境.所有我们需要先安装JDK,首先我们打开<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">JDK官网</a>,找到下面这个位置：</p>
+            <h3 id="kettle工具使用"><a href="#kettle工具使用" class="headerlink" title="kettle工具使用"></a>kettle工具使用</h3><p><strong>在前面介绍了kettle工具的安装,运行环境及配置完成之后,就可以双击运行kettle工具了,进入安装目录找到 data-integration 文件夹双击进入,然后双击打开Spoon.bat文件,即可打开kettle图形界面(启动速度很慢,可能会出现假死状态,请耐心等待,不要多次双击Spoon.bat文件).</strong></p>
+<p>Kettle有两种流程,转换流程和作业流程.</p>
+<h3 id="转换流程"><a href="#转换流程" class="headerlink" title="转换流程"></a>转换流程</h3><p>kettle是个ETL工具嘛,转换流程就是主要进行数据转换(T)步骤设计的地方.当然也包含数据源(E)和目标(L).</p>
+<p>新建转换流程的方式有很多,比如左上角 文件 -&gt; 新建 -&gt; 转换 ,或者点击欢迎页面WORK图标下的New transforation,亦可双击左侧主对象树下的转换图标,又可按快捷键Ctrl + N.</p>
+<p>转换流程设计页面左侧核心对象下面是一个个的分类模块,每个分类下面又有许多个功能不同的组件,鼠标按住左侧组件图标拖拽到右侧流程设计面板即可增加一个步骤.</p>
+<p><img src="/image/%E4%BD%BF%E7%94%A8/%E6%8F%92%E5%85%A5%E6%8E%A7%E4%BB%B6.png" alt="Alt text" title="Optional title"></p>
+<p>步骤之间需要使用箭头连接,箭头方向表示步骤流向,按住Shift键的同时鼠标点住步骤图标向外拉即可拉出一条箭头（按住鼠标中键也可拉出箭头）,将箭头拉向下一个步骤,即可形成一个简单的转换流程：</p>
+<p><img src="/image/%E4%BD%BF%E7%94%A8/%E8%BF%9E%E6%8E%A5.png" alt="Alt text" title="Optional title"></p>
+<p>需要注意的是步骤之间箭头的颜色,深色表示连接状态,浅色表示断开状态.比如下面这个转换流程,表输出步骤与上一步骤是断开连接的,执行流程的时候执行到字段选择这一步骤后就不会再往下执行了.单击箭头可以调整连接状态.</p>
+<p><img src="/image/%E4%BD%BF%E7%94%A8/%E8%BF%9E%E6%8E%A5%E7%81%B0%E8%89%B2.png" alt="Alt text" title="Optional title"></p>
+<p>Ctrl + S保存,将保存为ktr后缀的文件.</p>
+<h3 id="作业流程"><a href="#作业流程" class="headerlink" title="作业流程"></a>作业流程</h3><p>作业流程,即是对转换流程进行调度的.除了调度转换流程还可以做一些其他的工作,比如文件管理、条件判断、脚本执行等等,也可以调度其他作业流程.</p>
+<p>新建作业流程与转换流程类似,快捷键是Ctrl + Alt + N.核心组件在通用分类下,一个作业流程必须包含START组件,可以没有成功组件.作业流程中可以嵌套转换流程和作业流程：</p>
+<p><img src="/image/%E4%BD%BF%E7%94%A8/%E4%BD%9C%E4%B8%9A%E6%98%BE%E7%A4%BA.png" alt="Alt text" title="Optional title"></p>
+<p>与转换流程不同的是,除了步骤之间有连接状态（箭头颜色深浅）,还有连接条件（箭头上的图标,一共三种）.上图的这个作业中包含了所有连接条件：</p>
 <ul>
-<li>1.首先选择接受协议;</li>
-<li>2.然后下载指定版本,根据自己需要下载的版本下载,win10,64位系统操作系统如下图所示.</li>
+<li>小锁图标,表示不管上一步骤执行结果如何,都执行下一个步骤；</li>
+<li>红叉图标,表示只有上一步骤执行出错或者返回FALSE,才执行下一步骤；</li>
+<li>绿勾图标,表示只有上一步骤执行成功或者返回TRUE,才执行下一步骤.</li>
 </ul>
-<p><img src="/image/JDK%E4%B8%8B%E8%BD%BD.png" alt="Alt text" title="Optional title"></p>
-<ul>
-<li><p>3.安装JDK选择默认文件夹即可.</p>
-</li>
-<li><p>4.配置JDK环境变量,根据<a href="https://www.runoob.com/java/java-environment-setup.html" target="_blank" rel="noopener">菜鸟教程</a>.<br>  右击”我的电脑”,点击”属性”,点击”高级系统设置”,找到”环境变量”,点击新建”系统变量”.</p>
-<ul>
-<li>变量名:JAVA_HOME</li>
-<li>变量值:C:\Program Files\Java\jdk1.8.0_221&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//根据自己安装的路径来</li>
-<li>变量名：CLASSPATH</li>
-<li>变量值：.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//记得前面有个”.”</li>
-<li>变量名：Path</li>
-<li>变量值：%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;<br><img src="/image/%E9%AB%98%E7%BA%A7%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE.png" alt="Alt text" title="Optional title"><br><img src="/image/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.png" alt="Alt text" title="Optional title"><br><img src="/image/%E7%B3%BB%E7%BB%9F%E5%8F%98%E9%87%8F.png" alt="Alt text" title="Optional title"></li>
-</ul>
-</li>
-<li><p>5.测试JDK是否安装成功.</p>
-<ul>
-<li>1.”开始”-&gt;”运行”，键入”cmd”;</li>
-<li>2.输入命令:java -version,出现以下信息,说明环境变量配置成功;<br><img src="/image/%E6%B5%8B%E8%AF%95JDK.png" alt="Alt text" title="Optional title"></li>
-</ul>
-</li>
-<li><p>6.JVM参数设置.<br>打开前面下载好的Spoon.bat文件，使用编译器打开(例如VS Code,Sublime,Notepad ++)等<br><img src="/image/Spoon%E6%96%87%E4%BB%B6.png" alt="Alt text" title="Optional title"></p>
-<p>Kettle 8.1默认使用的最大jvm堆内存是2G,执行某些复杂作业可能会出现堆内存溢出错误(OutOfMemoryError),此时就需要调正Kettle的jvm参数.依旧是data-integration目录下的Spoon.bat文件，找到<br><img src="/image/%E5%86%85%E5%AD%98%E8%AE%BE%E7%BD%AE.png" alt="Alt text" title="Optional title"></p>
-</li>
-<li><p>7.依赖包导入<br>Kettle是没有内置数据库jdbc连接驱动的，当测试数据库连接的时候报出未找到驱动错误，那肯定是忘记导入jdbc驱动了。因此需要提前把常用数据库的jdbc驱动放置到data-integration/lib/目录下，另外，若是在Java代码组件中使用了第三方依赖包，也需要依赖包放置到该目录下。<br><img src="/image/mysql%E5%8C%85.png" alt="Alt text" title="Optional title"></p>
-</li>
-</ul>
+<p>START组件标识着工作流的开始,也是配置定时任务的地方：</p>
+<p><img src="/image/%E4%BD%BF%E7%94%A8/%E5%AE%9A%E6%97%B6%E8%B0%83%E5%BA%A6.png" alt="Alt text" title="Optional title"></p>
+<p>定时调度功能还是很灵活的,只不过需要一直保持Spoon处于启动状态,一旦Spoon窗口被误关闭,定时任务就无效了,所以一般不使用Kettle自带的这个调度器.比较常用的是使用操作系统的定时任务功能,比如Windows的计划任务,或者可以编写Java程序进行调度.</p>
+<p>Ctrl + S保存,将保存为kjb后缀的文件.</p>
 
         </div>
 
@@ -214,7 +203,7 @@
         <section class="post-nav">
             
             
-            <a class="next" rel="next" href="/2019/08/30/hello-world/">Hello World</a>
+            <a class="next" rel="next" href="/2019/09/16/kettlecourse/">kettle安装</a>
             
         </section>
 
@@ -225,7 +214,7 @@
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/rzhzhou/rzhzhou.github.io" target="_blank">Chic</a></span>
     </div>
 </footer>
 
